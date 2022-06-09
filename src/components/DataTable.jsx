@@ -19,9 +19,9 @@ function DataTable() {
     }));
   }
   function filterNumericButton() {
-    const { filterByNumericValues } = filterData;
+    const { filterByNumericValues, filterByName } = filterData;
     const { column, comparison, value } = filterByNumericValues[0];
-    const teste = data.filter((planet) => {
+    const filter = filterByName.filter((planet) => { // filterByName ao invés de data
       if (comparison === 'maior que') {
         return Number(planet[column]) > Number(value);
       }
@@ -35,7 +35,7 @@ function DataTable() {
     });
     setFilterData((prevData) => ({
       ...prevData,
-      filterByName: teste,
+      filterByName: filter,
     }));
     console.log(comparison);
   }
