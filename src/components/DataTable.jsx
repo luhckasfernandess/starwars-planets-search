@@ -37,7 +37,10 @@ function DataTable() {
       ...prevData,
       filterByName: filter,
     }));
-    console.log(comparison);
+    const removeFilterElement = document.getElementById(column);
+    console.log(removeFilterElement);
+    removeFilterElement.remove();
+    console.log(filterByNumericValues);
   }
   // Eu tentei usar o slice e o splice mas ficou um código grande
   const title = [
@@ -70,11 +73,11 @@ function DataTable() {
         data-testid="column-filter"
         onChange={ handleFilterChange }
       >
-        <option>population</option>
-        <option>orbital_period</option>
-        <option>diameter</option>
-        <option>rotation_period</option>
-        <option>surface_water</option>
+        <option id="population">population</option>
+        <option id="orbital_period">orbital_period</option>
+        <option id="diameter">diameter</option>
+        <option id="rotation_period">rotation_period</option>
+        <option id="surface_water">surface_water</option>
       </select>
       <select
         name="comparison"
