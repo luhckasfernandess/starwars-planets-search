@@ -5,9 +5,18 @@ import PlanetsFetchAPI from './PlanetsFetchAPI';
 
 function PlanetsProvider({ children }) {
   const [data] = PlanetsFetchAPI();
-  const [nameFilterData, setNameFilterData] = useState([]);
-  useEffect(() => { setNameFilterData(data); }, [data]);
-  const contextValue = { data, nameFilterData, setNameFilterData };
+  const [filterData, setFilterData] = useState({
+    filterByName: [],
+    filterByNumericValues: [{
+      column: 'population',
+      comparison: 'maior que',
+      value: 0 }],
+  });
+  useEffect(() => {
+    setFilterData((prevData) => ({
+      ...prevData, filterByName: data }));
+  }, [data]);
+  const contextValue = { data, filterData, setFilterData };
   return (
     <PlanetsContext.Provider value={ contextValue }>
       { children }
